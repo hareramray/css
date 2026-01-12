@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visual demonstration of CSS display properties: block, inline, and inline-block">
+    <title>Block vs Inline vs Inline-Block | CSS Display Properties</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="badge">CSS Fundamentals</div>
+            <h1 class="title">
+                <span class="gradient-text">Block</span> vs
+                <span class="gradient-text-2">Inline</span> vs
+                <span class="gradient-text-3">Inline-Block</span>
+            </h1>
+            <p class="subtitle">Understanding CSS Display Properties Through Visual Examples</p>
+        </header>
+
+        <!-- Interactive Controls -->
+        <div class="controls-section">
+            <h2 class="section-title">
+                <span class="icon">🎮</span> Interactive Mode
+            </h2>
+            <div class="control-buttons">
+                <button class="control-btn active" data-mode="all" onclick="setMode('all')">
+                    <span class="btn-icon">📊</span> Show All
+                </button>
+                <button class="control-btn" data-mode="block" onclick="setMode('block')">
+                    <span class="btn-icon">⬛</span> Block Only
+                </button>
+                <button class="control-btn" data-mode="inline" onclick="setMode('inline')">
+                    <span class="btn-icon">➖</span> Inline Only
+                </button>
+                <button class="control-btn" data-mode="inline-block" onclick="setMode('inline-block')">
+                    <span class="btn-icon">🔲</span> Inline-Block Only
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Demo Section -->
+        <main class="demo-section">
+            <!-- Block Demo -->
+            <div class="demo-card block-demo" data-type="block">
+                <div class="card-header">
+                    <div class="card-icon block-icon">⬛</div>
+                    <div class="card-title-group">
+                        <h2 class="card-title">display: block</h2>
+                        <span class="card-badge block-badge">Full Width</span>
+                    </div>
+                </div>
+
+                <div class="demo-area">
+                    <div class="block-element">Block Element 1</div>
+                    <div class="block-element">Block Element 2</div>
+                    <div class="block-element">Block Element 3</div>
+                </div>
+
+                <div class="properties-list">
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Takes full available width</span>
+                    </div>
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Starts on a new line</span>
+                    </div>
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Width & Height work</span>
+                    </div>
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Margin & Padding work (all sides)</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span class="code-title">CSS</span>
+                    </div>
+                    <pre><code><span class="selector">.block-element</span> {
+  <span class="property">display</span>: <span class="value">block</span>;
+  <span class="property">width</span>: <span class="value">100%</span>;
+  <span class="property">height</span>: <span class="value">auto</span>;
+  <span class="property">margin</span>: <span class="value">10px 0</span>;
+}</code></pre>
+                </div>
+
+                <div class="examples">
+                    <span class="example-label">Common Examples:</span>
+                    <div class="example-tags">
+                        <span class="tag">&lt;div&gt;</span>
+                        <span class="tag">&lt;p&gt;</span>
+                        <span class="tag">&lt;h1&gt;-&lt;h6&gt;</span>
+                        <span class="tag">&lt;section&gt;</span>
+                        <span class="tag">&lt;header&gt;</span>
+                        <span class="tag">&lt;footer&gt;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inline Demo -->
+            <div class="demo-card inline-demo" data-type="inline">
+                <div class="card-header">
+                    <div class="card-icon inline-icon">➖</div>
+                    <div class="card-title-group">
+                        <h2 class="card-title">display: inline</h2>
+                        <span class="card-badge inline-badge">Content Width</span>
+                    </div>
+                </div>
+
+                <div class="demo-area">
+                    <span class="inline-element">Inline 1</span>
+                    <span class="inline-element">Inline 2</span>
+                    <span class="inline-element">Inline 3</span>
+                    <span class="inline-element">Inline 4</span>
+                    <span class="inline-element">Inline 5</span>
+                </div>
+
+                <div class="properties-list">
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Only takes content width</span>
+                    </div>
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Flows with text (same line)</span>
+                    </div>
+                    <div class="property">
+                        <span class="cross">✗</span>
+                        <span>Width & Height DON'T work</span>
+                    </div>
+                    <div class="property">
+                        <span class="cross">✗</span>
+                        <span>Top/Bottom margin DON'T work</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span class="code-title">CSS</span>
+                    </div>
+                    <pre><code><span class="selector">.inline-element</span> {
+  <span class="property">display</span>: <span class="value">inline</span>;
+  <span class="comment">/* width & height ignored */</span>
+  <span class="property">padding</span>: <span class="value">5px 10px</span>;
+  <span class="comment">/* vertical margin ignored */</span>
+}</code></pre>
+                </div>
+
+                <div class="examples">
+                    <span class="example-label">Common Examples:</span>
+                    <div class="example-tags">
+                        <span class="tag">&lt;span&gt;</span>
+                        <span class="tag">&lt;a&gt;</span>
+                        <span class="tag">&lt;strong&gt;</span>
+                        <span class="tag">&lt;em&gt;</span>
+                        <span class="tag">&lt;img&gt;</span>
+                        <span class="tag">&lt;code&gt;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inline-Block Demo -->
+            <div class="demo-card inline-block-demo" data-type="inline-block">
+                <div class="card-header">
+                    <div class="card-icon inline-block-icon">🔲</div>
+                    <div class="card-title-group">
+                        <h2 class="card-title">display: inline-block</h2>
+                        <span class="card-badge inline-block-badge">Best of Both</span>
+                    </div>
+                </div>
+
+                <div class="demo-area">
+                    <div class="inline-block-element">Inline-Block 1</div>
+                    <div class="inline-block-element">Inline-Block 2</div>
+                    <div class="inline-block-element">Inline-Block 3</div>
+                </div>
+
+                <div class="properties-list">
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Flows inline (same line)</span>
+                    </div>
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Width & Height work</span>
+                    </div>
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>All margins & padding work</span>
+                    </div>
+                    <div class="property">
+                        <span class="check">✓</span>
+                        <span>Perfect for navigation items</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span class="code-title">CSS</span>
+                    </div>
+                    <pre><code><span class="selector">.inline-block-element</span> {
+  <span class="property">display</span>: <span class="value">inline-block</span>;
+  <span class="property">width</span>: <span class="value">120px</span>;
+  <span class="property">height</span>: <span class="value">50px</span>;
+  <span class="property">margin</span>: <span class="value">10px</span>;
+}</code></pre>
+                </div>
+
+                <div class="examples">
+                    <span class="example-label">Common Use Cases:</span>
+                    <div class="example-tags">
+                        <span class="tag">Navigation</span>
+                        <span class="tag">Buttons</span>
+                        <span class="tag">Cards Grid</span>
+                        <span class="tag">Thumbnails</span>
+                        <span class="tag">Tags</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Comparison Table -->
+        <section class="comparison-section">
+            <h2 class="section-title">
+                <span class="icon">📋</span> Quick Comparison
+            </h2>
+            <div class="table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th class="block-col">Block</th>
+                            <th class="inline-col">Inline</th>
+                            <th class="inline-block-col">Inline-Block</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>New Line</td>
+                            <td class="block-col"><span class="yes">Yes ✓</span></td>
+                            <td class="inline-col"><span class="no">No ✗</span></td>
+                            <td class="inline-block-col"><span class="no">No ✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>Width/Height</td>
+                            <td class="block-col"><span class="yes">Works ✓</span></td>
+                            <td class="inline-col"><span class="no">Ignored ✗</span></td>
+                            <td class="inline-block-col"><span class="yes">Works ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Horizontal Margin</td>
+                            <td class="block-col"><span class="yes">Works ✓</span></td>
+                            <td class="inline-col"><span class="yes">Works ✓</span></td>
+                            <td class="inline-block-col"><span class="yes">Works ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Vertical Margin</td>
+                            <td class="block-col"><span class="yes">Works ✓</span></td>
+                            <td class="inline-col"><span class="no">Ignored ✗</span></td>
+                            <td class="inline-block-col"><span class="yes">Works ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Default Width</td>
+                            <td class="block-col">100%</td>
+                            <td class="inline-col">Auto (content)</td>
+                            <td class="inline-block-col">Auto (content)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Live Playground -->
+        <section class="playground-section">
+            <h2 class="section-title">
+                <span class="icon">🧪</span> Live Playground
+            </h2>
+            <div class="playground">
+                <div class="playground-controls">
+                    <div class="control-group">
+                        <label>Display Type:</label>
+                        <select id="displaySelect" onchange="updatePlayground()">
+                            <option value="block">block</option>
+                            <option value="inline">inline</option>
+                            <option value="inline-block" selected>inline-block</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Elements: <span id="elementCount">3</span></label>
+                        <div class="element-buttons">
+                            <button class="element-btn remove-btn" onclick="removeElement()" title="Remove Element">
+                                <span>−</span>
+                            </button>
+                            <button class="element-btn add-btn" onclick="addElement()" title="Add Element">
+                                <span>+</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Width: <span id="widthValue">150px</span></label>
+                        <input type="range" id="widthSlider" min="50" max="300" value="150"
+                            onchange="updatePlayground()">
+                    </div>
+                    <div class="control-group">
+                        <label>Height: <span id="heightValue">60px</span></label>
+                        <input type="range" id="heightSlider" min="30" max="150" value="60"
+                            onchange="updatePlayground()">
+                    </div>
+                    <div class="control-group">
+                        <label>Margin: <span id="marginValue">10px</span></label>
+                        <input type="range" id="marginSlider" min="0" max="50" value="10" onchange="updatePlayground()">
+                    </div>
+                </div>
+                <div class="playground-preview" id="playgroundPreview">
+                    <div class="playground-element">Element 1</div>
+                    <div class="playground-element">Element 2</div>
+                    <div class="playground-element">Element 3</div>
+                </div>
+                <div class="playground-code" id="playgroundCode">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span class="code-title">Generated CSS</span>
+                    </div>
+                    <pre><code id="generatedCode"></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">Understanding Display Properties is Essential for CSS Mastery</p>
+                <div class="footer-links">
+                    <span class="footer-tag">CSS</span>
+                    <span class="footer-tag">Web Development</span>
+                    <span class="footer-tag">Frontend</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
