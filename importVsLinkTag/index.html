@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive demo comparing CSS @import vs Link Tag">
+    <title>CSS @import vs Link Tag | Which Should You Use?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo"><span class="logo-icon">🎨</span><span class="logo-text">CSS Showdown</span></div>
+            <nav class="nav">
+                <a href="#comparison" class="nav-link">Comparison</a>
+                <a href="#performance" class="nav-link">Performance</a>
+                <a href="#demo" class="nav-link">Live Demo</a>
+                <a href="#verdict" class="nav-link">Verdict</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">CSS Loading Methods</div>
+            <h1 class="hero-title">
+                <span class="gradient-text">@import</span>
+                <span class="vs-badge">VS</span>
+                <span class="gradient-text-alt">&lt;link&gt;</span>
+            </h1>
+            <p class="hero-subtitle">Which Should You Use? Let's find out!</p>
+            <div class="hero-cards">
+                <div class="hero-card import-card"><div class="card-icon">📥</div><h3>@import</h3><p>CSS within CSS</p></div>
+                <div class="hero-card link-card"><div class="card-icon">🔗</div><h3>&lt;link&gt;</h3><p>HTML Tag Method</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="section syntax-section">
+        <div class="container">
+            <div class="section-header"><span class="section-badge">Syntax</span><h2 class="section-title">How They Look</h2></div>
+            <div class="syntax-grid">
+                <div class="syntax-card glass-card">
+                    <div class="syntax-header import-header"><span class="syntax-icon">📥</span><h3>@import Rule</h3><span class="syntax-badge css-badge">CSS</span></div>
+                    <div class="code-block">
+                        <div class="code-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="file-name">styles.css</span></div>
+                        <pre class="code-content"><code>@import url('reset.css');
+@import 'typography.css';
+@import url('components.css');
+
+/* Your styles here */
+body {
+    font-family: sans-serif;
+}</code></pre>
+                    </div>
+                    <div class="syntax-note"><span class="note-icon">ℹ️</span><p>Must be at the top of CSS file</p></div>
+                </div>
+                <div class="syntax-card glass-card">
+                    <div class="syntax-header link-header"><span class="syntax-icon">🔗</span><h3>&lt;link&gt; Tag</h3><span class="syntax-badge html-badge">HTML</span></div>
+                    <div class="code-block">
+                        <div class="code-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="file-name">index.html</span></div>
+                        <pre class="code-content"><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="reset.css"&gt;
+  &lt;link rel="stylesheet" href="typography.css"&gt;
+  &lt;link rel="stylesheet" href="components.css"&gt;
+&lt;/head&gt;</code></pre>
+                    </div>
+                    <div class="syntax-note success"><span class="note-icon">✅</span><p>Can be placed anywhere in &lt;head&gt;</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="performance" class="section performance-section">
+        <div class="container">
+            <div class="section-header"><span class="section-badge">Performance</span><h2 class="section-title">Loading Behavior</h2></div>
+            <div class="loading-demo">
+                <div class="demo-controls">
+                    <button id="startDemo" class="demo-btn"><span class="btn-icon">▶️</span> Start Demo</button>
+                    <button id="resetDemo" class="demo-btn secondary"><span class="btn-icon">🔄</span> Reset</button>
+                </div>
+                <div class="loading-comparison">
+                    <div class="loading-card import-loading">
+                        <div class="loading-header"><span class="method-icon">📥</span><h4>@import (Sequential)</h4></div>
+                        <div class="loading-timeline">
+                            <div class="timeline-item"><div class="file-box">main.css</div><div class="progress-bar"><div class="progress import-1"></div></div></div>
+                            <div class="timeline-item"><div class="file-box">reset.css</div><div class="progress-bar"><div class="progress import-2"></div></div></div>
+                            <div class="timeline-item"><div class="file-box">theme.css</div><div class="progress-bar"><div class="progress import-3"></div></div></div>
+                            <div class="timeline-item"><div class="file-box">components.css</div><div class="progress-bar"><div class="progress import-4"></div></div></div>
+                        </div>
+                        <div class="loading-time"><span class="time-label">Total:</span><span class="time-value import-time">0ms</span></div>
+                        <div class="loading-status"><span class="status-dot"></span><span class="status-text">Waiting...</span></div>
+                    </div>
+                    <div class="loading-card link-loading">
+                        <div class="loading-header"><span class="method-icon">🔗</span><h4>&lt;link&gt; (Parallel)</h4></div>
+                        <div class="loading-timeline">
+                            <div class="timeline-item"><div class="file-box">reset.css</div><div class="progress-bar"><div class="progress link-1"></div></div></div>
+                            <div class="timeline-item"><div class="file-box">theme.css</div><div class="progress-bar"><div class="progress link-2"></div></div></div>
+                            <div class="timeline-item"><div class="file-box">components.css</div><div class="progress-bar"><div class="progress link-3"></div></div></div>
+                            <div class="timeline-item"><div class="file-box">utilities.css</div><div class="progress-bar"><div class="progress link-4"></div></div></div>
+                        </div>
+                        <div class="loading-time"><span class="time-label">Total:</span><span class="time-value link-time">0ms</span></div>
+                        <div class="loading-status"><span class="status-dot"></span><span class="status-text">Waiting...</span></div>
+                    </div>
+                </div>
+                <div class="explanation-box glass-card">
+                    <div class="explanation-icon">💡</div>
+                    <div class="explanation-content">
+                        <h4>Why the difference?</h4>
+                        <p><strong>@import</strong> loads sequentially - each file must finish before the next starts.</p>
+                        <p><strong>&lt;link&gt;</strong> allows parallel downloads using HTTP/2 multiplexing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section pros-cons-section">
+        <div class="container">
+            <div class="section-header"><span class="section-badge">Analysis</span><h2 class="section-title">Pros & Cons</h2></div>
+            <div class="pros-cons-grid">
+                <div class="method-analysis">
+                    <div class="method-header import-theme"><span class="method-icon">📥</span><h3>@import</h3></div>
+                    <div class="pros-list"><h4>✅ Pros</h4><ul><li>Keeps HTML cleaner</li><li>Modular CSS organization</li><li>Supports media queries</li></ul></div>
+                    <div class="cons-list"><h4>❌ Cons</h4><ul><li><strong>Sequential loading (slow!)</strong></li><li>Blocks rendering</li><li>No preloading support</li></ul></div>
+                </div>
+                <div class="method-analysis">
+                    <div class="method-header link-theme"><span class="method-icon">🔗</span><h3>&lt;link&gt; Tag</h3></div>
+                    <div class="pros-list"><h4>✅ Pros</h4><ul><li><strong>Parallel loading (fast!)</strong></li><li>Browser preload support</li><li>Better caching control</li></ul></div>
+                    <div class="cons-list"><h4>❌ Cons</h4><ul><li>More HTML code</li><li>CSS dependencies in HTML</li><li>Order matters for cascade</li></ul></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="section demo-section">
+        <div class="container">
+            <div class="section-header"><span class="section-badge">Interactive</span><h2 class="section-title">Live Code Demo</h2></div>
+            <div class="interactive-demo">
+                <div class="demo-tabs">
+                    <button class="tab-btn active" data-tab="import-demo">@import</button>
+                    <button class="tab-btn" data-tab="link-demo">&lt;link&gt;</button>
+                    <button class="tab-btn" data-tab="modern-demo">Modern</button>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-panel active" id="import-demo">
+                        <div class="code-editor"><pre><code>/* styles.css - @import method */
+@import url('base.css');
+@import url('layout.css');
+@import url('components.css');
+
+.hero { background: linear-gradient(135deg, #667eea, #764ba2); }</code></pre></div>
+                        <div class="analysis-result warning"><span>⚠️</span> 3 sequential requests will delay render</div>
+                    </div>
+                    <div class="demo-panel" id="link-demo">
+                        <div class="code-editor"><pre><code>&lt;!-- index.html - link method --&gt;
+&lt;link rel="preload" href="base.css" as="style"&gt;
+&lt;link rel="stylesheet" href="base.css"&gt;
+&lt;link rel="stylesheet" href="layout.css"&gt;
+&lt;link rel="stylesheet" href="components.css"&gt;</code></pre></div>
+                        <div class="analysis-result success"><span>✅</span> Files load in parallel!</div>
+                    </div>
+                    <div class="demo-panel" id="modern-demo">
+                        <div class="code-editor"><pre><code>&lt;!-- Best Practice: Bundle for production --&gt;
+&lt;style&gt;/* Critical CSS inline */&lt;/style&gt;
+&lt;link rel="preload" href="bundle.css" as="style"&gt;
+&lt;link rel="stylesheet" href="bundle.css"&gt;</code></pre></div>
+                        <div class="analysis-result success"><span>🏆</span> Best of both worlds!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section use-cases-section">
+        <div class="container">
+            <div class="section-header"><span class="section-badge">Practical</span><h2 class="section-title">When to Use Each</h2></div>
+            <div class="use-cases-grid">
+                <div class="use-case-card glass-card">
+                    <div class="use-case-header"><span>📥</span><h3>Use @import When...</h3></div>
+                    <ul><li>✓ Using CSS preprocessors (Sass/LESS)</li><li>✓ Development environment only</li><li>✓ Small projects with minimal CSS</li></ul>
+                </div>
+                <div class="use-case-card glass-card featured">
+                    <div class="featured-badge">⭐ Recommended</div>
+                    <div class="use-case-header"><span>🔗</span><h3>Use &lt;link&gt; When...</h3></div>
+                    <ul><li>✓ <strong>Production websites (always!)</strong></li><li>✓ Performance is a priority</li><li>✓ You need preloading</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="verdict" class="section verdict-section">
+        <div class="container">
+            <div class="verdict-card glass-card">
+                <div class="verdict-icon">🏆</div>
+                <h2 class="verdict-title">The Verdict</h2>
+                <p class="verdict-subtitle">For production, <strong>&lt;link&gt;</strong> wins!</p>
+                <div class="verdict-comparison">
+                    <div class="verdict-item loser"><span>@import</span><div class="score-bar"><div class="score-fill" style="width:45%"></div></div><span>45%</span></div>
+                    <div class="verdict-item winner"><span>&lt;link&gt; 🏆</span><div class="score-bar"><div class="score-fill" style="width:95%"></div></div><span>95%</span></div>
+                </div>
+                <div class="takeaways">
+                    <h3>Key Takeaways:</h3>
+                    <p>1. Use <strong>&lt;link&gt;</strong> for production</p>
+                    <p>2. Use <strong>@import</strong> only in development</p>
+                    <p>3. <strong>Bundle CSS</strong> for best performance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made with ❤️ for CSS learners | <span class="logo-icon">🎨</span> CSS @import vs Link Tag</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
